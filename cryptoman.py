@@ -10,6 +10,7 @@
 
 # import things from other files
 from _art import *
+from _generatekeys import *
 from _encrypt import *
 from _decrypt import *
 
@@ -38,7 +39,7 @@ def main():
 	print ('Oi, este é o programa ' + boldit('CRYPTO_MAN'))
 	print ('Este programa é feito para você, que é mega um encriptador.')
 	print ('O que você deseja fazer nesta sessão?\n')
-	print boldit('1. gerar uma chave\n')
+	print boldit('1. gerar um par de chaves\n')
 	print boldit('2. encriptar\n')
 	print boldit('3. desencriptar\n')
 	print boldit('4. quero arte!\n')
@@ -58,7 +59,7 @@ def main():
 	if (user_option == 1):
 		clear()
 		print (program_name)
-		print ('#tama')
+		generate_keys()
 
 
 	if (user_option == 2):
