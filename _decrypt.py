@@ -19,8 +19,9 @@ def decrypt_screen():
 		print ('Não achei o arquivo '+ boldit(file_name, 'RED') +'.\n')
 		exit()
 	
-	key_1 = raw_input('Insira o primeiro número da chave privada:\n')
-	key_2 = raw_input('Insira o segundo número da chave privada:\n')
+	print ('Acesse a tupla da chave privada (n, d).\n')
+	key_1 = raw_input('Insira o tamanho da chave (n):\n')
+	key_2 = raw_input('Insira a chave privada (d):\n')
 
 	try:
 		key_1 = int(key_1)

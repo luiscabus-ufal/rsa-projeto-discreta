@@ -5,12 +5,12 @@ from _dict import *
 
 def encrypt_this_char(original_char, n, e):
 	# c = m ^ e mod n
-	return (dicionario.index(original_char)+1) ** e % n
+	return (dicionario.index(original_char) + 1) ** e % n
 
 
 def encrypt_screen():
 
-	file_name = raw_input('Qual o nome do seu arquivo a ser encriptado?\n')
+	file_name = raw_input('Qual o nome do arquivo a ser encriptado?\n')
 	print ('')
 	print ('humm.. ' + boldit(file_name) + '... ok...')
 	print ('')
@@ -19,8 +19,9 @@ def encrypt_screen():
 		print ('Não achei o arquivo '+ boldit(file_name, 'RED') +'.\n')
 		exit()
 	
-	key_1 = raw_input('Insira o primeiro número da chave pública:\n')
-	key_2 = raw_input('Insira o segundo número da chave pública:\n')
+	print ('Acesse a tupla da chave pública (n, e).\n')
+	key_1 = raw_input('Insira o tamanho da chave (n):\n')
+	key_2 = raw_input('Insira a chave pública (e):\n')
 
 	try:
 		key_1 = int(key_1)
