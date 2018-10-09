@@ -115,3 +115,7 @@ def generate_keys():
 	print (boldit('\nAnote aí na ordem:\n'))
 	print ('Chave pública (n, e): ('+boldit(str(chave_n)+','+str(chave_e))+')\n')
 	print ('Chave privada (n, d): ('+boldit(str(chave_n)+','+str(chave_d))+')\n')
+	print ('Arquivo userkeys gerado com as chaves.\n')
+	key_files = open('userkeys', "w")
+	key_files.write('Chave pública (n, e): ('+str(chave_n)+' , '+str(chave_e))+')\n')
+	key_files.close()
