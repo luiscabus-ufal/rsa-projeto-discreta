@@ -8,10 +8,45 @@ def mdc(dividendo, divisor):
 	else:
 		return mdc(divisor, dividendo % divisor)
 
+# Esta função usa o algoritmo de euclide extendido para encontrar o inverso multiplicativo modular de a mod m.
+# O inverso de a mod m é o número x tal que ax é congruente a 1 mod m
+def inverso_modular(a, m):
+	# Guardamos o m inicial, pois ele pode ser usado quando o valor de x encontrado pelo algoritmo 
+	# de euclides for negativo.
+	m0 = m 
+	y = 0
+ 	x = 1
+	if m == 1:
+   		return 0
+  
+	while a > 1: 
+    	# q é o quociente
+	    q = a // m 
+	  
+	  	# t é uma variável auxiliar
+	    tmp = m
+				  
+			# m agora é o resto da divisão de a por m, segundo a regra do algoritmo de euclides
+	    m = a % m 
+	    a = tmp 
+	    tmp = y 
+	  
+	    # atualizamos x and y segundo a regra da divisão inteira.
+	    # a relação que vemos abaixo pode ser observada mais claramente quando executamos
+	    # o algoritmo de euclides no papel. 
+	    y = x - q * y 
+	    x = tmp
+	  
+	# Caso x seja negativo, somamos ao m inicial para obter um inverso positivo.
+	if x < 0: 
+		x = x + m0 
+  
+	# Retornamos apenas x 
+	return x
 
 def define_public_key(p = 17, q = 41):
 	n = int(p) * int(q)
-	totiente = (p - 1) * (q - 1)
+	totiente = (p - 1) * (q - 1) # φ(n) 
 
 	# encontrar um número "e" co-primo de totiente, maior que 1 e menor que totiente
 	# ou seja, MDC(e, totiente)=1
@@ -21,7 +56,7 @@ def define_public_key(p = 17, q = 41):
 	for x in xrange(3, totiente):
 		if (mdc(totiente, x) == 1):
 			i = i + 1
-		if (i > 4): #pára depois de encontrar o décimo co-primo
+		if (i > 4): #pára depois de encontrar o quarto co-primo
 			break
 	e = x
 
@@ -37,7 +72,15 @@ def define_private_key(p = 17, q = 41, e = 13):
 	n = int(p) * int(q)
 	totiente = (p - 1) * (q - 1)
 
-	d = 0
+	i = 0
+	for x in xrange(3, totiente):
+		if (mdc(totiente, x) == 1):
+			i = i + 1
+		if (i > 4): #pára depois de encontrar o quarto co-primo
+			break
+	e = x
+
+	d = inverso_modular(e, totiente)
 
 	global chave_n
 	global chave_d
