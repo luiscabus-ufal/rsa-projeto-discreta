@@ -5,7 +5,7 @@ from _dict import *
 
 def decrypt_this_char(encrypted_number, n, d):
 	# c = m ^ e mod n
-	return (dicionario.index(encrypted_number)) ** d % n - 1
+	return dicionario[((encrypted_number ** d % n) -1)] 
 
 
 def decrypt_screen():
@@ -34,9 +34,12 @@ def decrypt_screen():
 	file_source = open(file_name, "r")
 	file_destination = open(file_source.name + '.decrypt', "w") 
 
-	file_content = file_source.read()
-	for char in file_content:
-		file_destination.write(str(encrypt_this_char(char, key_1, key_2)) + ' ')
+	file_content = file_source.readlines()
+	file_content = [x.strip() for x in file_content] 
+	for line in file_content:
+		numbers = line.split(" ")
+		for number in line.split(' '):
+			file_destination.write(str(decrypt_this_char(int(number), key_1, key_2)))
 
 	print ('\nPronto, seu arquivo foi desencriptado e salvo com o nome ' + boldit(str(file_destination.name), 'RED') + '.\n')
 
