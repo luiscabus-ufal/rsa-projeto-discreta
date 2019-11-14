@@ -1,4 +1,4 @@
-Utilizar python 2.7~
+Utilizar Python~
 
 Implementação baseada no artigo 
 
